@@ -2,7 +2,7 @@
 
 旧 Sandbox 的两件事在 CC 下的去向:
 1. 虚拟路径翻译 (上游沙箱虚拟路径 → 运行目录) — 退役。CC 会话直接工作在真实
-   项目目录 (CLAUDE_PROJECT_DIR), resolve() 只做"相对路径锚定项目目录", 绝对
+   项目目录 (UCODE_PROJECT_DIR), resolve() 只做"相对路径锚定项目目录", 绝对
    路径透传, 保留 resolve/virtualize 调用点让工具实现零改动。
 2. 有状态资源持有 (deploy 子进程登记 / 运行配置) — 保留,
    挂在 MCP server 进程里的单例 RunContext 上, 生命周期与 server 进程一致。
@@ -18,9 +18,9 @@ from pathlib import Path
 
 
 def project_dir() -> Path:
-    """CC 工程目录。.mcp.json 里 cwd 已设为 ${CLAUDE_PROJECT_DIR},
+    """CC 工程目录。.mcp.json 里 cwd 已设为 ${UCODE_PROJECT_DIR},
     env 兜底一层, 再兜到进程 cwd。"""
-    p = os.environ.get("CLAUDE_PROJECT_DIR") or os.environ.get("V2C_PROJECT_DIR")
+    p = os.environ.get("UCODE_PROJECT_DIR") or os.environ.get("V2C_PROJECT_DIR")
     return Path(p).resolve() if p else Path.cwd().resolve()
 
 

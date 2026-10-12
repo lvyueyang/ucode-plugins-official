@@ -1,10 +1,23 @@
 {
   "name": "example-plugin",
-  "displayName": "Example Plugin",
+  "displayName": "示例插件",
   "version": "0.1.0",
-  "description": "最小示例插件：演示清单与 skill 的目录形状",
-  "author": { "name": "lvyueyang" },
+  "description": "最小示例插件：演示清单与 skill 的目录形状，可作为新插件模板",
+  "author": {
+    "name": "lvyueyang"
+  },
   "repository": "https://github.com/lvyueyang/ucode-plugins-official",
   "license": "Apache-2.0",
-  "keywords": ["example", "template"]
+  "keywords": [
+    "example",
+    "template"
+  ],
+  "displayName_i18n": {
+    "en": "Example Plugin",
+    "zh-CN": "示例插件"
+  },
+  "description_i18n": {
+    "en": "Minimal example plugin: shows the manifest and skill layout, usable as a template for new plugins.",
+    "zh-CN": "最小示例插件：演示清单与 skill 的目录形状，可作为新插件模板"
+  }
 }

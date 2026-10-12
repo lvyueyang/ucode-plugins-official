@@ -1,107 +1,83 @@
 # Hyper3D Rodin
 
-[简体中文](./README_CN.md)
+[English](./README.md)
 
-Generate 3D models from text or reference images with Hyper3D Rodin Gen-2.5,
-split completed models into parts with BANG, follow progress, and retrieve
-result pages or requested model files in ZCode.
+在 ucode 中使用文字或参考图片生成 Hyper3D Rodin Gen-2.5 三维模型，
+使用 BANG 将已完成模型拆分为部件，跟踪进度，并获取结果页面或按需下载模型文件。
 
-This plugin contains one remote HTTP MCP declaration and one Skill. A Hyper3D
-account is required; generation and BANG consume credits from the personal or
-group workspace selected during OAuth authorization.
+插件包含一个远程 HTTP MCP 声明和一个 Skill。需要 Hyper3D 账号；生成模型和
+BANG 拆件会消耗 OAuth 授权时选择的个人或团队工作空间额度。
 
-## Install and connect
+## 安装与连接
 
-1. After publication, install and enable **Hyper3D Rodin** in ZCode's plugin
-   manager.
-2. Use ZCode's MCP authentication controls to sign in to Hyper3D in the browser.
-   Review the requesting client, select the billing workspace, and authorize
-   access. Select the MCP scope used by your active project; authorization in
-   one scope does not mean another scope is connected. No API key, password,
-   cookie, or session token belongs in chat or in
-   this plugin's configuration.
-3. Verify that the Hyper3D tools are available in the session. Tool discovery
-   alone does not prove that OAuth or authenticated calls work. If the host has
-   no authorization control or login fails, retain the redacted error for
-   troubleshooting; do not work around it by pasting credentials into chat.
+1. 正式发布后，在 ucode 插件管理器中安装并启用 **Hyper3D Rodin**。
+2. 通过 ucode 的 MCP 认证入口在浏览器中登录 Hyper3D，核对请求授权的客户端，
+   选择计费工作空间并授权。请选择当前项目实际使用的 MCP 作用域；某个作用域授权
+   不代表其他作用域也已连接。不要把 API Key、密码、Cookie 或会话 Token
+   放入聊天或本插件配置。
+3. 确认当前会话能发现 Hyper3D 工具。仅能发现工具不代表 OAuth 或授权后的调用
+   已经成功。如果客户端没有授权入口或登录失败，保留脱敏后的错误以便排查，
+   不要通过在聊天中粘贴凭据来绕过问题。
 
-The MCP endpoint is `https://api.hyper3d.com/api/mcp`. ZCode namespaces the
-server as `plugin:hyper3d-rodin:hyper3d-rodin`. The Skill maps the logical tool
-names below to the actual tools exposed by the current session; this plugin
-does not define slash commands.
+MCP 地址为 `https://api.hyper3d.com/api/mcp`。ucode 的服务命名空间为
+`plugin:hyper3d-rodin:hyper3d-rodin`。Skill 会把下文的逻辑工具名对应到
+当前会话实际提供的工具；本插件不定义斜杠命令。
 
-The service advertises `rodin:generate` for uploads and generation and
-`rodin:read` for status and results. OAuth metadata advertises authorization-code
-flow with PKCE S256, dynamic client registration, and refresh-token support.
-The actual login and refresh flow depends on ZCode's client implementation.
-Reconnect to change the authorized account or billing workspace.
+服务声明的权限为 `rodin:generate`（上传及生成）和 `rodin:read`（状态及结果）。
+OAuth 元数据声明支持 PKCE S256 授权码流程、动态客户端注册和刷新令牌；
+实际登录与刷新行为取决于 ucode 客户端实现。更换授权账号或计费工作空间需要重新连接。
 
-## Use
+## 使用
 
-- “Use Hyper3D to generate a cartoon astronaut as a GLB model.”
-- “Generate a 3D model from this reference image.”
-- “Check my Rodin task with generation ID … and show its result page when done.”
-- “Split my completed Rodin model with generation ID … into parts using BANG.”
-- “Download the completed model into this project's assets directory.”
+- 「用 Hyper3D 生成一个卡通宇航员，输出 GLB 模型。」
+- 「根据这张参考图片生成一个三维模型。」
+- 「查询我的 Rodin 任务，生成 ID 为……，完成后给我结果页面。」
+- 「使用 BANG 拆分我已完成的 Rodin 模型，生成 ID 为……。」
+- 「把已完成的模型下载到这个项目的 assets 目录。」
 
-The Skill guides text/image submission, spaced status checks, and result
-retrieval. Uploads accept 1–5 supported images, each at most 20 MiB. ZCode must
-read the actual files, request upload URLs, and perform successful HTTP PUTs
-before starting an image-based generation. If uploading is unavailable, the
-agent reports that limitation and points to [Hyper3D](https://hyper3d.ai); it
-does not silently omit the images.
+Skill 指导文字或图片生成、间隔查询进度和结果获取。参考图支持 1–5 张，每张不超过
+20 MiB，格式以工具支持范围为准。ucode 必须读取实际文件、申请上传地址并成功完成
+HTTP PUT，再提交图片生成。如果无法上传，Agent 会说明限制并引导前往
+[Hyper3D](https://hyper3d.ai)，不会悄悄忽略参考图片。
 
-| Tool | Purpose |
+| 工具 | 用途 |
 | --- | --- |
-| `rodin_create_uploads` | Obtain temporary upload URLs for reference images |
-| `rodin_generate` | Submit a Rodin generation; consumes credits |
-| `rodin_generate_bang` | Split an owned, completed Rodin generation; consumes credits |
-| `rodin_get_status` | Read a task's status and stage |
-| `rodin_wait` | Server-side wait; prefer status checks in ZCode |
-| `rodin_get_result` | Retrieve the result page and temporary file URLs |
+| `rodin_create_uploads` | 获取参考图片的临时上传地址 |
+| `rodin_generate` | 提交 Rodin 生成任务，消耗额度 |
+| `rodin_generate_bang` | 拆分当前授权用户拥有的已完成 Rodin 模型，消耗额度 |
+| `rodin_get_status` | 查询任务状态和阶段 |
+| `rodin_wait` | 服务端等待；ucode 优先使用状态查询 |
+| `rodin_get_result` | 获取结果页面和临时文件地址 |
 
-The server also advertises `rodin_import_images`, which is for ChatGPT Chat
-attachments only. The Skill instructs ZCode not to use it. There are no account
-balance or generation-history tools. Available parameters and formats follow
-the live tool schemas; current model formats are GLB, USDZ, FBX, OBJ, and STL.
+服务还会声明 `rodin_import_images`，但它仅用于 ChatGPT Chat 附件，Skill 明确要求
+ucode 不调用它。当前没有账户余额或生成历史列表工具。可用参数及格式以实时工具
+Schema 为准；目前模型格式包括 GLB、USDZ、FBX、OBJ 和 STL。
 
-## Dependencies, permissions, and side effects
+## 依赖、权限与副作用
 
-- **Services and network:** ZCode provides the conversational model. Hyper3D
-  provides the hosted Rodin/BANG service. MCP traffic goes to
-  `api.hyper3d.com`; browser sign-in and result pages use Hyper3D's web service
-  at `hyper3d.ai` and the endpoints advertised by OAuth metadata. Image uploads
-  and requested file downloads also access the storage/CDN hosts in the signed
-  URLs returned by Hyper3D. These URLs are temporary; avoid printing or sharing them. MCP responses and
-  upload/download tool cards may retain signed URLs in ZCode history; this
-  plugin cannot guarantee host-side redaction. Redact them before sharing logs
-  or screenshots, and use host secret-redaction features when available.
-- **Data:** Prompts, selected reference images, generation settings, and task
-  identifiers are sent to Hyper3D as needed. The plugin does not request a
-  repository upload. Status/result access is limited to the authorized user's
-  generations; group billing does not grant access to other members' models.
-- **Charges and recovery:** Generation and BANG consume Hyper3D credits and
-  create remote tasks. The Skill explains the credit use before the first paid
-  submission and does not generate merely to test a connection. These calls
-  are not idempotent: after a timeout or connection error, check the known task
-  or ask the user to inspect Hyper3D Mine before deciding on a new submission.
-  Insufficient balance or entitlement is reported without silently changing
-  the workspace or requested settings.
-- **Local execution and files:** The package has no local MCP server, bundled
-  executables, install scripts, commands, or hooks, and requires no additional
-  Node.js/Python runtime or model API key. ZCode manages installation and OAuth
-  state. The agent may use host file/network tools or shell commands to inspect
-  the selected images and upload them. Downloading models writes local files
-  only when requested by the user. Shell arguments must be safely quoted and
-  signed URLs must not be exposed in shared output. Importing into Blender,
-  Unreal, or another DCC is outside this plugin's scope.
-- **Results:** Show the permanent `display_url` after completion. Temporary
-  `files[].url` values are for requested downloads, not user-facing links.
+- **服务与网络：** 对话模型由 ucode 提供，Rodin/BANG 在线服务由 Hyper3D 提供。
+  MCP 请求发送到 `api.hyper3d.com`；浏览器登录和结果页面使用 `hyper3d.ai`
+  及 OAuth 元数据声明的端点。图片上传和按需文件下载还会访问 Hyper3D 返回的
+  签名 URL 中的存储/CDN 域名。这些 URL 是临时地址，应避免打印或分享。
+  MCP 响应及上传/下载工具卡片可能在 ucode 历史中保留签名 URL；本插件无法保证
+  宿主自动脱敏。分享日志或截图前应移除它们；宿主支持时使用其敏感信息脱敏功能。
+- **数据：** 按需将提示词、选定的参考图片、生成参数和任务标识发送到 Hyper3D。
+  插件不要求上传代码仓库。状态和结果仅能访问当前授权用户的生成任务；
+  团队计费授权不代表可以访问其他成员的模型。
+- **计费与恢复：** 生成及 BANG 会消耗 Hyper3D 额度并创建远程任务。Skill 会在
+  首次收费提交前说明额度消耗，不会仅为测试连接而生成模型。这些调用不具备幂等性：
+  超时或连接异常后应查询已知任务，或让用户在 Hyper3D Mine 检查后再决定是否重新提交。
+  额度不足或缺少权益时会报告错误，不会擅自更换工作空间或修改用户要求的参数。
+- **本地执行与文件：** 插件不包含本地 MCP 服务端、可执行程序、安装脚本、命令组件
+  或 Hooks，也不需要额外的 Node.js/Python 运行时或模型 API Key。ucode 管理安装及
+  OAuth 状态。Agent 可能使用宿主的文件/网络工具或 shell 命令检查选定图片并上传。
+  仅在用户要求下载模型时写入本地文件；shell 参数需安全引用，签名 URL 不应出现在
+  共享输出中。导入 Blender、Unreal 或其他 DCC 不在本插件范围内。
+- **结果：** 任务完成后展示永久 `display_url`。临时 `files[].url` 仅用于用户要求的
+  文件下载，不作为面向用户的结果链接。
 
-## License
+## 许可证
 
-The plugin configuration, Skill, and documentation are licensed under the
-[MIT License](./LICENSE). The remote MCP service is operated by Deemos;
-its server implementation and generated assets are outside this license and
-remain subject to Hyper3D's applicable terms. The Hyper3D icon identifies the
-service and does not grant trademark rights.
+插件配置、Skill 和文档采用 [MIT License](./LICENSE)。远端 MCP 服务由 Deemos
+运营；其服务端实现及生成资产不在该许可证范围内，仍受 Hyper3D 适用条款约束。
+Hyper3D 图标用于标识服务，不授予商标权。

@@ -3,7 +3,7 @@
 原则 (迁移方案 §3):
 - hook 只查客观布尔条件, 不查质量;
 - 拒绝消息复述"缺什么、写到哪、什么格式" (被拦一次等于被重新教一遍);
-- 同一规则连拦 3 次放行并记录违规 (计数器落 ${CLAUDE_PLUGIN_DATA}, 兜底
+- 同一规则连拦 3 次放行并记录违规 (计数器落 ${UCODE_PLUGIN_DATA}, 兜底
   <project>/.v2c/hook_state), 避免把会话楔死。
 
 契约归属 (claim_contract / read_contract_owner): 复刻契约是**会话**的义务, 不是
@@ -33,12 +33,12 @@ def read_stdin_json() -> dict:
 
 
 def project_dir() -> Path:
-    p = os.environ.get("CLAUDE_PROJECT_DIR")
+    p = os.environ.get("UCODE_PROJECT_DIR")
     return Path(p) if p else Path.cwd()
 
 
 def state_dir() -> Path:
-    d = os.environ.get("CLAUDE_PLUGIN_DATA")
+    d = os.environ.get("UCODE_PLUGIN_DATA")
     root = Path(d) if d else project_dir() / ".v2c" / "hook_state"
     root.mkdir(parents=True, exist_ok=True)
     return root
@@ -101,7 +101,7 @@ def _v2c_dir() -> Path:
 
 
 def owner_file() -> Path:
-    """契约归属记录 (项目级, 不走 CLAUDE_PLUGIN_DATA — 契约属于这个工作区)。"""
+    """契约归属记录 (项目级, 不走 UCODE_PLUGIN_DATA — 契约属于这个工作区)。"""
     return project_dir() / ".v2c" / "contract_owner.json"
 
 

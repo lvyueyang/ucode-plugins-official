@@ -1,0 +1,68 @@
+{
+  "name": "video2code",
+  "version": "0.6.0",
+  "description": "【预留，暂不可用】待 ucode 接入 Browser Use WebView 后启用：录制网站动效为 WebM，再用 ffmpeg 转 MP4 并复刻网页。",
+  "author": {
+    "name": "ucode"
+  },
+  "license": "MIT",
+  "keywords": [
+    "video2code",
+    "replication",
+    "webapp",
+    "motion"
+  ],
+  "userConfig": {
+    "media_resolution": {
+      "title": "抽帧分辨率档位",
+      "description": "clip_video 抽帧 inline 给模型的每帧分辨率档位: low(~70tok/帧) / medium(~256) / high(~786)",
+      "type": "string",
+      "default": "medium"
+    },
+    "clip_max_frames": {
+      "title": "单次 clip 帧数上限",
+      "description": "一次 clip_video 调用所有 segment 累计抽帧上限 (超出按比例降帧)",
+      "type": "number",
+      "default": 400
+    }
+  },
+  "description_i18n": {
+    "en": "[Reserved, not usable yet] Will be enabled once ucode ships Browser Use WebView: record site motion as WebM, convert to MP4 with ffmpeg, and replicate the page.",
+    "zh-CN": "【预留，暂不可用】待 ucode 接入 Browser Use WebView 后启用：录制网站动效为 WebM，再用 ffmpeg 转 MP4 并复刻网页。"
+  },
+  "mcpServers": {
+    "runtime": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "${UCODE_PLUGIN_ROOT}/mcp/runtime_server.py"
+      ],
+      "cwd": "${UCODE_PROJECT_DIR}",
+      "env": {
+        "V2C_PLUGIN_ROOT": "${UCODE_PLUGIN_ROOT}",
+        "V2C_MEDIA_RESOLUTION": "${user_config.media_resolution}"
+      },
+      "timeoutMs": 600000
+    },
+    "video": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "${UCODE_PLUGIN_ROOT}/mcp/video_server.py"
+      ],
+      "cwd": "${UCODE_PROJECT_DIR}",
+      "env": {
+        "V2C_PLUGIN_ROOT": "${UCODE_PLUGIN_ROOT}",
+        "V2C_MEDIA_RESOLUTION": "${user_config.media_resolution}",
+        "V2C_CLIP_MAX_FRAMES": "${user_config.clip_max_frames}"
+      },
+      "timeoutMs": 300000
+    }
+  },
+  "displayName": "视频复刻（预留）",
+  "displayName_i18n": {
+    "en": "Video2Code (reserved)",
+    "zh-CN": "视频复刻（预留）"
+  },
+  "defaultEnabled": false
+}

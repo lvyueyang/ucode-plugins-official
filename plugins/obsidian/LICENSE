@@ -57,8 +57,8 @@ SOFTWARE.
 
 ================================================================================
 3. Local additions with no upstream counterpart
-   (the .zcode-plugin/ and .claude-plugin/ manifests, README.md,
-   README_CN.md, UPSTREAM.md, and skills/setup/)
+   (the .ucode-plugin/ manifest, README.md,
+   README_EN.md, UPSTREAM.md, and skills/setup/)
 
 MIT License
 

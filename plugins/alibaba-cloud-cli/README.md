@@ -1,34 +1,34 @@
-# Alibaba Cloud CLI Plugin
+# 阿里云 CLI 插件
 
-[中文文档](./README_CN.md)
+[English](./README.md)
 
-This plugin is a lightweight Skill wrapper around the official [Alibaba Cloud CLI](https://github.com/aliyun/aliyun-cli) (`aliyun`). It uses the user's local CLI and does not bundle a binary, MCP server, or cloud credentials.
+本插件是官方 [Alibaba Cloud CLI](https://github.com/aliyun/aliyun-cli)（命令 `aliyun`）的轻量 Skill 封装：只调用用户本机 CLI，不内置 CLI 二进制、MCP 或云端凭证。
 
-Wrapper maintained by Z.ai, version 0.1.2; this is not a vendor-published plugin. Upstream CLI software, documentation, and trademarks remain attributed to their respective owners.
+封装由 Z.ai 维护，版本 0.1.2；这不是上游厂商发布的插件。上游 CLI、文档和商标仍归对应厂商所有。
 
-## Quick setup
+## 快速 setup
 
-Run `/alibaba-cloud-cli:setup`. Existing CLI profiles are verified and reused first; only missing installations or requested upgrades use the latest official release. New credentials use local OAuth where possible. Identity is checked with `aliyun sts GetCallerIdentity --auto-plugin-install false`, without requiring an STS plugin.
+运行 `/alibaba-cloud-cli:setup`。先验证并复用已有 CLI 和 profile；只在缺少安装或用户要求升级时使用官方最新版。新凭证优先本机 OAuth。使用 `aliyun sts GetCallerIdentity --auto-plugin-install false` 验证身份，无需预装 STS 插件。
 
-Cloud calls retain the selected profile/region and disable automatic plugin installation. Use the default JSON output, not a generic `--output json` suffix. Setup distinguishes identity verification from an actual read-only product query.
+云调用保留所选 profile/region，关闭产品插件自动安装；JSON 使用默认输出，不统一追加 `--output json`。基础身份验证与实际产品只读请求分别报告。
 
 ## Skills
 
-| Skill | Entry | Purpose |
+| Skill | 入口 | 用途 |
 | --- | --- | --- |
-| `setup` | `/alibaba-cloud-cli:setup` | Check/install the latest `aliyun`, configure a profile, and verify identity |
-| `cli` | Context-triggered | Discover product commands from live help and gate remote writes |
+| `setup` | `/alibaba-cloud-cli:setup` | 检查/安装最新版 `aliyun`，配置 profile 与身份验证 |
+| `cli` | 自动按上下文触发 | 用实时 `--help` 选择产品命令，执行查询或经确认的写操作 |
 
-## Safety boundary
+## 安全边界
 
-- CLI upgrades, product-plugin installation, and remote writes require explicit user participation or confirmation.
-- Never ask for AccessKey, STS, or OAuth tokens in chat; never read or echo `~/.aliyun/config.json`.
-- Create/delete, authorization, scaling, and network changes are preceded by an account, profile, region, and target summary.
+- 安装/升级 CLI、安装云产品插件、远端写操作都需要用户明确参与或确认。
+- 不要求用户在聊天中粘贴 AccessKey、STS Token、OAuth Token；不读取或回显 `~/.aliyun/config.json`。
+- 创建、删除、授权、扩缩容、网络变更等操作会先展示账号、profile、地域和资源目标。
 
-## Upstream documentation
+## 上游文档
 
-- [Install and update](https://www.alibabacloud.com/help/en/cli/install-update-alibaba-cloud-cli)
-- [Configure credentials](https://www.alibabacloud.com/help/en/cli/configure-credentials)
-- [Get started](https://www.alibabacloud.com/help/en/cli/quickly-start-using-alibaba-cloud-cli)
+- [安装与升级](https://www.alibabacloud.com/help/en/cli/install-update-alibaba-cloud-cli)
+- [凭证配置](https://www.alibabacloud.com/help/en/cli/configure-credentials)
+- [快速开始](https://www.alibabacloud.com/help/en/cli/quickly-start-using-alibaba-cloud-cli)
 
-Open a new ZCode session after enabling or updating the plugin so the Skill catalog is refreshed.
+启用或更新插件后请新建 ucode session，确保 Skill 清单刷新。

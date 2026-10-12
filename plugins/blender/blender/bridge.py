@@ -1,4 +1,4 @@
-"""ZCode Blender 桥：在 `blender -b --python bridge.py -- --zcode-bridge --workspace <root>` 里运行。
+"""ucode Blender 桥：在 `blender -b --python bridge.py -- --ucode-bridge --workspace <root>` 里运行。
 
 协议：stdin 每行一个请求 {"id", "cmd", "args"}，stdout 每行一个响应 {"id", "ok", "result"|"error", "state"}。
 启动完成后先打印 {"event": "ready"}。Blender 自身的输出（版本、渲染进度）不以 "{" 开头，客户端会忽略。
@@ -434,7 +434,7 @@ def cmd_export_glb(args):
     if max_faces and faces > max_faces:
         ratio = max_faces / faces
         for obj in meshes:
-            mod = obj.modifiers.new("ZCODE_TMP_DECIMATE", "DECIMATE")
+            mod = obj.modifiers.new("UCODE_TMP_DECIMATE", "DECIMATE")
             mod.ratio = ratio
             decimated.append((obj, mod))
     try:
@@ -499,7 +499,7 @@ def cmd_run_python(args):
     code = args.get("code") or ""
     guard_python(code)
     stdout = io.StringIO()
-    namespace = {"bpy": bpy, "__name__": "__zcode_run_python__"}
+    namespace = {"bpy": bpy, "__name__": "__ucode_run_python__"}
     try:
         with contextlib.redirect_stdout(stdout):
             exec(compile(code, "<run_python>", "exec"), namespace)  # noqa: S102 - 受审批流保护的逃生口
@@ -545,14 +545,14 @@ COMMANDS.update(bridge_create.register(_BridgeNamespace()))
 def parse_cli():
     global WORKSPACE_ROOT, OUTPUT_ROOT
     argv = sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else []
-    WORKSPACE_ROOT = os.environ.get("ZCODE_WORKSPACE_ROOT")
+    WORKSPACE_ROOT = os.environ.get("UCODE_WORKSPACE_ROOT")
     for i, arg in enumerate(argv):
         if arg == "--workspace" and i + 1 < len(argv):
             WORKSPACE_ROOT = argv[i + 1]
         if arg == "--output-root" and i + 1 < len(argv):
             OUTPUT_ROOT = argv[i + 1]
     if not WORKSPACE_ROOT:
-        raise SystemExit("bridge.py requires --workspace <root> or ZCODE_WORKSPACE_ROOT")
+        raise SystemExit("bridge.py requires --workspace <root> or UCODE_WORKSPACE_ROOT")
     WORKSPACE_ROOT = os.path.abspath(WORKSPACE_ROOT)
     if OUTPUT_ROOT:
         OUTPUT_ROOT = os.path.abspath(OUTPUT_ROOT)

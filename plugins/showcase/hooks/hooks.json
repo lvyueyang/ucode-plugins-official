@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[showcase] 能力演示插件已启用，输入 /showcase:tour 开始导览'"
+          }
+        ]
+      }
+    ]
+  }
+}

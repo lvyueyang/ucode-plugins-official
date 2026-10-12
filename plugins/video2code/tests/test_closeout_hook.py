@@ -28,8 +28,8 @@ def _run(project: Path, session_id: str = "", stop_hook_active: bool = False,
          env_extra: dict | None = None) -> tuple[int, dict | None]:
     """跑一次 Stop hook, 返回 (exit_code, stdout 里的 JSON 或 None)。"""
     env = dict(os.environ)
-    env["CLAUDE_PROJECT_DIR"] = str(project)
-    env["CLAUDE_PLUGIN_DATA"] = str(project / ".v2c" / "hook_state")
+    env["UCODE_PROJECT_DIR"] = str(project)
+    env["UCODE_PLUGIN_DATA"] = str(project / ".v2c" / "hook_state")
     env.pop("V2C_NO_CLOSEOUT_HOOK", None)
     env.update(env_extra or {})
     payload = {"session_id": session_id, "stop_hook_active": stop_hook_active}
@@ -187,8 +187,8 @@ class ClaimContractTest(unittest.TestCase):
     def _write_hook(self, rel: str, sid: str) -> int:
         hook = HOOK.parent / "check_plan_first.py"
         env = dict(os.environ)
-        env["CLAUDE_PROJECT_DIR"] = str(self.pd)
-        env["CLAUDE_PLUGIN_DATA"] = str(self.pd / ".v2c" / "hook_state")
+        env["UCODE_PROJECT_DIR"] = str(self.pd)
+        env["UCODE_PLUGIN_DATA"] = str(self.pd / ".v2c" / "hook_state")
         payload = {"session_id": sid,
                    "tool_input": {"file_path": str(self.pd / rel)}}
         p = subprocess.run([sys.executable, str(hook)], input=json.dumps(payload),

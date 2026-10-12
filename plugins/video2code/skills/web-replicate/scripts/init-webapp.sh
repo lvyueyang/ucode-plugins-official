@@ -34,8 +34,8 @@ if [[ ! -f "$TEMPLATE_SRC/package.json" ]]; then
     exit 1
 fi
 
-# CC 迁移: 默认落在工程目录下 app/ (CLAUDE_PROJECT_DIR 由 CC 提供, 兜底当前 cwd)
-PROJECT_PATH=${PROJECT_PATH:-"${CLAUDE_PROJECT_DIR:-$PWD}/app"}
+# CC 迁移: 默认落在工程目录下 app/ (UCODE_PROJECT_DIR 由 CC 提供, 兜底当前 cwd)
+PROJECT_PATH=${PROJECT_PATH:-"${UCODE_PROJECT_DIR:-$PWD}/app"}
 # TEMP_PATH 可能被多个并行 case 共享 (批量运行器会注入固定的 tmp_root/temp-webapp),
 # 直接 rm -rf 会互删。每次调用用 PID 唯一子目录, 用完即清。
 TEMP_PATH=${TEMP_PATH:-"/tmp/temp-webapp"}

@@ -36,9 +36,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
 
-PLUGIN_ROOT = Path(os.environ.get("CLAUDE_PLUGIN_ROOT")
+PLUGIN_ROOT = Path(os.environ.get("UCODE_PLUGIN_ROOT")
                    or Path(__file__).resolve().parents[3])
-PROJECT_DIR = Path(os.environ.get("CLAUDE_PROJECT_DIR") or Path.cwd())
+PROJECT_DIR = Path(os.environ.get("UCODE_PROJECT_DIR") or Path.cwd())
 WEB_SCRIPTS = PLUGIN_ROOT / "skills" / "web-replicate" / "scripts"
 TPL_DIR = PLUGIN_ROOT / "skills" / "web-replicate" / "templates" / "default" / "template"
 NM_LOCAL_ROOT = Path(os.environ.get("NM_LOCAL_ROOT", "/tmp/webapp-node-modules"))
@@ -273,7 +273,7 @@ CHECKS: list[Check] = [
           probe_bins("bash"),
           need="bash (Windows 上装 Git for Windows 自带的 Git Bash, 或用 WSL)",
           fix=by_os(windows=["winget install --id Git.Git -e   # 装完 bash 在 PATH 上",
-                             "# 或改用 WSL 里跑 Claude Code"]),
+                             "# 或改用 WSL 里跑 ucode"]),
           cheap=True, platforms=("windows",)),
     Check("symlink", "可创建目录软链", "init-webapp.sh 落位后硬断言 node_modules 是软链, 建不出就 abort",
           probe_symlink,

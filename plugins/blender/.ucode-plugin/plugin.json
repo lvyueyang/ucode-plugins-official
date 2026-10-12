@@ -1,0 +1,57 @@
+{
+  "name": "blender",
+  "version": "0.2.2",
+  "description": "让 Agent 在对话中创建、检视、修改并渲染 Blender 场景（.blend）。",
+  "skills": "skills",
+  "author": {
+    "name": "ucode"
+  },
+  "license": "MIT",
+  "mcpServers": {
+    "blender": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${UCODE_PLUGIN_ROOT}/dist/server.mjs"
+      ],
+      "cwd": "${UCODE_PROJECT_DIR}",
+      "env": {
+        "UCODE_WORKSPACE_ROOT": "${UCODE_PROJECT_DIR}",
+        "UCODE_BLENDER_PATH": "${user_config.blenderPath}",
+        "UCODE_BLENDER_ALLOW_PYTHON": "${user_config.allowPython}",
+        "UCODE_BLENDER_RENDER_ENGINE": "${user_config.renderEngine}",
+        "UCODE_BLENDER_ENGINE_DOWNLOAD_DIR": "${user_config.engineDownloadDir}"
+      }
+    }
+  },
+  "userConfig": {
+    "blenderPath": {
+      "type": "file",
+      "default": "",
+      "title": "Blender 可执行文件",
+      "description": "可选。留空时依次探测已安装的 Blender.app / Program Files / PATH，再看插件自己下载的便携版。"
+    },
+    "allowPython": {
+      "type": "boolean",
+      "default": false,
+      "title": "允许 run_python",
+      "description": "开启后向模型注册 run_python 工具（受审批流约束，桥内仍禁止 os/subprocess/socket/shutil 等导入）。"
+    },
+    "renderEngine": {
+      "type": "string",
+      "default": "eevee",
+      "title": "默认渲染引擎",
+      "description": "eevee 或 cycles。EEVEE 渲染失败时自动退到 Cycles CPU 并降采样。"
+    },
+    "engineDownloadDir": {
+      "type": "directory",
+      "default": "",
+      "title": "便携版 Blender 目录",
+      "description": "可选。插件下载官方便携版时的落盘目录，留空用插件数据目录 <plugin-data>/engine。"
+    }
+  },
+  "description_i18n": {
+    "en": "Let the agent create, inspect, edit and render Blender scenes (.blend) via MCP tools.",
+    "zh-CN": "让 Agent 在对话中创建、检视、修改并渲染 Blender 场景（.blend）。"
+  }
+}

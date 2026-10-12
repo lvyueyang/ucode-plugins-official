@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from hook_common import project_dir  # noqa: E402
 
-PLUGIN_ROOT = Path(os.environ.get("CLAUDE_PLUGIN_ROOT")
+PLUGIN_ROOT = Path(os.environ.get("UCODE_PLUGIN_ROOT")
                    or Path(__file__).resolve().parents[1])
 DOCTOR = PLUGIN_ROOT / "skills" / "env-setup" / "scripts" / "env_doctor.py"
 
@@ -90,7 +90,7 @@ def main() -> None:
         # 让模型对着这行自己猜装什么。
         lines.append("[video2code] ⚠️ 缺失依赖: " + "; ".join(missing))
         lines.append("[video2code] → 装之前先 Skill(env-setup): 全量体检（含 registry 连通性）"
-                     " + 逐项修复命令；缺 mcp/ffmpeg 时部署或视频工具不可用，浏览器录制走 ZCode 内置 Browser Use")
+                     " + 逐项修复命令；缺 mcp/ffmpeg 时部署或视频工具不可用，浏览器录制走 ucode 内置 Browser Use")
     lines.append(f"[video2code] {prepare_template()}")
     print("\n".join(lines))
 

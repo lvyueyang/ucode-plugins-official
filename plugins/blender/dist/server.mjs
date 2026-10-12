@@ -36440,14 +36440,14 @@ function createBridgeClient({
       "--python",
       bridgeScript,
       "--",
-      "--zcode-bridge",
+      "--ucode-bridge",
       "--workspace",
       workspaceRoot2
     ];
     if (outputRoot) args.push("--output-root", outputRoot);
     const proc = spawn(blenderPath, args, {
       stdio: ["pipe", "pipe", "pipe"],
-      env: { ...process.env, ZCODE_WORKSPACE_ROOT: workspaceRoot2, PYTHONUNBUFFERED: "1" }
+      env: { ...process.env, UCODE_WORKSPACE_ROOT: workspaceRoot2, PYTHONUNBUFFERED: "1" }
     });
     child = proc;
     let resolveReady;
@@ -36678,7 +36678,7 @@ function portableAsset(platform, arch) {
 }
 function pluginDataDir(deps = {}) {
   const { env = process.env, homedir: home = homedir } = deps;
-  return env.ZCODE_PLUGIN_DATA || join2(home(), ".zcode", "plugins-data", PLUGIN_ID);
+  return env.UCODE_PLUGIN_DATA || join2(home(), ".ucode", "plugins-data", PLUGIN_ID);
 }
 function engineDownloadDir(config2 = {}, deps = {}) {
   return config2.engineDownloadDir?.trim() || join2(pluginDataDir(deps), "engine");
@@ -37587,7 +37587,7 @@ var SKIP_DIRS = /* @__PURE__ */ new Set([
   ".git",
   ".hg",
   ".svn",
-  ".zcode",
+  ".ucode",
   "dist",
   "build",
   ".cache"
@@ -38374,14 +38374,14 @@ ${result.stdout}` : "(no output)",
 // src/server-factory.mjs
 var PLUGIN_ROOT = join6(dirname3(fileURLToPath2(import.meta.url)), "..");
 function configFromEnv(env = process.env) {
-  const engine = (env.ZCODE_BLENDER_RENDER_ENGINE || "eevee").trim().toLowerCase();
+  const engine = (env.UCODE_BLENDER_RENDER_ENGINE || "eevee").trim().toLowerCase();
   return {
-    blenderPath: (env.ZCODE_BLENDER_PATH || "").trim(),
-    allowPython: /^(1|true|yes)$/i.test((env.ZCODE_BLENDER_ALLOW_PYTHON || "").trim()),
+    blenderPath: (env.UCODE_BLENDER_PATH || "").trim(),
+    allowPython: /^(1|true|yes)$/i.test((env.UCODE_BLENDER_ALLOW_PYTHON || "").trim()),
     renderEngine: engine === "cycles" ? "cycles" : "eevee",
-    engineDownloadDir: (env.ZCODE_BLENDER_ENGINE_DOWNLOAD_DIR || "").trim(),
+    engineDownloadDir: (env.UCODE_BLENDER_ENGINE_DOWNLOAD_DIR || "").trim(),
     // CI / e2e：不起 Blender，用 src/fake-engine.mjs 的内存场景替代引擎与桥。
-    fakeEngine: /^(1|true|yes)$/i.test((env.ZCODE_BLENDER_FAKE_ENGINE || "").trim())
+    fakeEngine: /^(1|true|yes)$/i.test((env.UCODE_BLENDER_FAKE_ENGINE || "").trim())
   };
 }
 function createBlenderServer({
@@ -38409,7 +38409,7 @@ function createBlenderServer({
     bridgeFactory = createFakeBridge;
     log(
       "info",
-      "ZCODE_BLENDER_FAKE_ENGINE=1: using the in-memory fake engine, Blender will not be started"
+      "UCODE_BLENDER_FAKE_ENGINE=1: using the in-memory fake engine, Blender will not be started"
     );
   }
   const server2 = new McpServer(
@@ -38466,13 +38466,13 @@ function createBlenderServer({
 
 // server.mjs
 var workspaceRoot = resolve2(
-  process.env.ZCODE_WORKSPACE_ROOT || process.env.ZCODE_PROJECT_DIR || process.cwd()
+  process.env.UCODE_WORKSPACE_ROOT || process.env.UCODE_PROJECT_DIR || process.cwd()
 );
 var { server, close } = createBlenderServer({
   config: configFromEnv(process.env),
   workspaceRoot,
   log: (level, message) => {
-    if (level !== "debug" || process.env.ZCODE_BLENDER_DEBUG)
+    if (level !== "debug" || process.env.UCODE_BLENDER_DEBUG)
       process.stderr.write(`[blender:${level}] ${message}
 `);
   }

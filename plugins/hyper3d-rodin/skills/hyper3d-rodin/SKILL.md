@@ -5,13 +5,13 @@ description: Generate Hyper3D Rodin Gen-2.5 models from text or images, split co
 
 # Hyper3D Rodin
 
-Use the tools discovered from the `hyper3d-rodin` MCP server in ZCode. Match
+Use the tools discovered from the `hyper3d-rodin` MCP server in ucode. Match
 logical names below to the actual session tools; do not construct tool prefixes.
 Use live tool descriptions and schemas for parameters, limits, and defaults.
 Leave optional settings unset unless needed for the user's request. For highly
 reflective reference images, consider recommending `texture_delight`.
 
-Connect through ZCode's MCP OAuth flow. If authorization is missing, use the
+Connect through ucode's MCP OAuth flow. If authorization is missing, use the
 host's login/reconnect flow; never request credentials in chat. Billing uses
 the workspace selected during OAuth. Generation and BANG consume credits:
 explain this before the first paid submission and submit only for a requested
@@ -36,7 +36,7 @@ generation or split. Connection tests and status checks do not authorize one.
 ## Reference images
 
 Use actual files from the user's paths or attachments. Do not use
-`rodin_import_images` in ZCode; that tool is for ChatGPT Chat attachments.
+`rodin_import_images` in ucode; that tool is for ChatGPT Chat attachments.
 
 1. Inspect the files and check them against the live upload schema. Derive
    MIME types and byte sizes from the actual files.

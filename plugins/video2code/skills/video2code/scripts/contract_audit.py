@@ -86,7 +86,7 @@ _WEBGL_NEG_RE = re.compile(
 
 
 def _project_dir(argv_dir: str | None) -> Path:
-    p = argv_dir or os.environ.get("CLAUDE_PROJECT_DIR") \
+    p = argv_dir or os.environ.get("UCODE_PROJECT_DIR") \
         or os.environ.get("V2C_PROJECT_DIR")
     pd = Path(p).resolve() if p else Path.cwd().resolve()
     # cwd 容错: 从 app/ 等子目录跑时向上找到含 out/plan.md 的项目根

@@ -7,11 +7,20 @@
       "description": "最小示例插件：演示清单与 skill 的目录形状，可作为新插件模板",
       "version": "0.1.0",
       "category": "development",
-      "source": "./plugins/example-plugin"
+      "source": "./plugins/example-plugin",
+      "displayName": "示例插件",
+      "displayName_i18n": {
+        "en": "Example Plugin",
+        "zh-CN": "示例插件"
+      },
+      "description_i18n": {
+        "en": "Minimal example plugin: shows the manifest and skill layout, usable as a template for new plugins.",
+        "zh-CN": "最小示例插件：演示清单与 skill 的目录形状，可作为新插件模板"
+      }
     },
     {
       "name": "cloudbase-skills",
-      "description": "CloudBase development skills and MCP integration for building, deploying, and troubleshooting Web, WeChat Mini Program, database, cloud function, CloudRun, storage, and AI projects.",
+      "description": "腾讯云 CloudBase 开发技能与 MCP 集成，覆盖 Web、微信小程序、数据库、云函数、云托管、云存储和 AI 项目的开发、部署与排障。",
       "description_i18n": {
         "en": "CloudBase development skills and MCP integration for building, deploying, and troubleshooting Web, WeChat Mini Program, database, cloud function, CloudRun, storage, and AI projects.",
         "zh-CN": "腾讯云 CloudBase 开发技能与 MCP 集成，覆盖 Web、微信小程序、数据库、云函数、云托管、云存储和 AI 项目的开发、部署与排障。"
@@ -32,48 +41,16 @@
       "source": "./plugins/cloudbase-skills"
     },
     {
-      "name": "mimosa",
-      "displayName": "Code Security Protection",
-      "displayName_i18n": {
-        "en": "Code Security Protection",
-        "zh-CN": "代码安全防护"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/mimosa/icon.png",
-      "description": "Local-first security guardrails for ZCode with pre-write hooks, end-of-turn review, Git gates, commands, a security-scan skill, and an optional MCP server for sealed deep scans.",
-      "description_i18n": {
-        "en": "Local-first security guardrails for ZCode with pre-write hooks, end-of-turn review, Git gates, commands, a security-scan skill, and an optional MCP server for sealed deep scans.",
-        "zh-CN": "面向 ZCode 的本地优先代码安全防线，提供写入前 Hook、任务收尾复查、Git 门禁、命令、安全扫描 Skill，以及用于密封深扫的可选 MCP 服务。"
-      },
-      "version": "1.0.4",
-      "author": {
-        "name": "Mimosa"
-      },
-      "category": "developer-tools",
-      "keywords": [
-        "security",
-        "code-scanning",
-        "hooks",
-        "mcp",
-        "sdlc"
-      ],
-      "source": {
-        "source": "url",
-        "url": "https://cdn-zcode.z.ai/zcode/official-plugin/plugins/mimosa/1.0.4/plugin.zip"
-      }
-    },
-    {
       "name": "github",
-      "description": "GitHub CLI workflows for commits, pull requests, issues, releases, Actions, repositories, Codespaces, and other GitHub resources.",
+      "description": "基于 GitHub CLI 的 GitHub 工作流，覆盖提交、Pull Request、Issue、Release、Actions、仓库、Codespaces 等资源。",
       "description_i18n": {
         "en": "GitHub CLI workflows for commits, pull requests, issues, releases, Actions, repositories, Codespaces, and other GitHub resources.",
         "zh-CN": "基于 GitHub CLI 的 GitHub 工作流，覆盖提交、Pull Request、Issue、Release、Actions、仓库、Codespaces 等资源。"
       },
       "version": "0.1.2",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/github/icon.png",
       "category": "developer-tools",
       "keywords": [
         "git",
@@ -88,353 +65,16 @@
       "source": "./plugins/github"
     },
     {
-      "name": "video-agent-kit",
-      "requiresPaidPlan": true,
-      "description": "自动化视频剪辑工具包: 标准云端语音转录与合成、完整视频抽帧理解、局部复看、时间线、预览渲染、QC 和 TTS。",
-      "description_i18n": {
-        "en": "Automated video editing toolkit: standard cloud speech transcription and synthesis, full video frame extraction and understanding, local re-inspection, timeline, preview rendering, QC, and TTS.",
-        "zh-CN": "自动化视频剪辑工具包: 标准云端语音转录与合成、完整视频抽帧理解、局部复看、时间线、预览渲染、QC 和 TTS。"
-      },
-      "version": "0.4.3",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/video-agent/icon.png",
-      "category": "productivity",
-      "keywords": [
-        "video-editing",
-        "video-agent",
-        "visual-inspection",
-        "timeline",
-        "ffmpeg"
-      ],
-      "source": "./plugins/video-agent-kit"
-    },
-    {
-      "name": "video2code",
-      "description": "基于 ZCode 内置 Browser Use WebView 录制 WebM 并用 ffmpeg 转成 MP4/URL 复刻；无需 Playwright 或外部 Chromium",
-      "description_i18n": {
-        "en": "Records WebM through ZCode's built-in Browser Use WebView and converts it to MP4 with ffmpeg for video/URL replication; no Playwright or external Chromium required.",
-        "zh-CN": "基于 ZCode 内置 Browser Use WebView 录制 WebM 并用 ffmpeg 转成 MP4/URL 复刻；无需 Playwright 或外部 Chromium"
-      },
-      "version": "0.6.0",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/video2code/icon.png",
-      "category": "productivity",
-      "keywords": [
-        "video2code",
-        "replication",
-        "webapp",
-        "motion"
-      ],
-      "source": "./plugins/video2code"
-    },
-    {
-      "name": "accounting-and-reporting",
-      "displayName": "核算与报告",
-      "displayName_i18n": {
-        "en": "Accounting & Reporting",
-        "zh-CN": "核算与报告"
-      },
-      "description": "Accounting close and statutory reporting off the company's own ledger: month-end close checks, ledger reconciliation to transaction-level root cause, account mapping for consolidation, and statutory statements delivered as review-ready drafts",
-      "description_i18n": {
-        "en": "Accounting close and statutory reporting off the company's own ledger: month-end close checks, ledger reconciliation to transaction-level root cause, account mapping for consolidation, and statutory statements delivered as review-ready drafts",
-        "zh-CN": "【企业财务】核算与报告:月结关账检查与阻断项、总账与明细账勾稽及交易级差异归因、科目映射与重分类、内部管理报表编制、三表勾稽复核"
-      },
-      "version": "0.1.1",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/accounting-reporting/icon.png",
-      "category": "finance",
-      "keywords": [
-        "accounting",
-        "month-end-close",
-        "reconciliation",
-        "statutory-reporting",
-        "consolidation"
-      ],
-      "source": "./plugins/accounting-and-reporting"
-    },
-    {
-      "name": "assess-credit",
-      "displayName": "固收研究",
-      "displayName_i18n": {
-        "en": "Fixed Income & Credit",
-        "zh-CN": "固收研究"
-      },
-      "requiresPaidPlan": true,
-      "description": "Fixed-income and credit research: bond profiles with valuation and duration/convexity/spread, issuer credit assessment, yield-curve and credit-spread analysis, and credit-risk watchlists for onshore bonds",
-      "description_i18n": {
-        "en": "Fixed-income and credit research: bond profiles with valuation and duration/convexity/spread, issuer credit assessment, yield-curve and credit-spread analysis, and credit-risk watchlists for onshore bonds",
-        "zh-CN": "【二级市场】固收研究:债券档案与估值、发行主体信用、收益率曲线与信用利差、信用风险跟踪"
-      },
-      "version": "0.1.2",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/fixed-income-research/icon.png",
-      "category": "finance",
-      "keywords": [
-        "fixed-income",
-        "credit-research",
-        "bonds",
-        "yield-curve",
-        "credit-spread"
-      ],
-      "source": "./plugins/assess-credit"
-    },
-    {
-      "name": "find-clients",
-      "displayName": "对公获客",
-      "displayName_i18n": {
-        "en": "Corporate Client Acquisition",
-        "zh-CN": "对公获客"
-      },
-      "requiresPaidPlan": true,
-      "description": "Corporate-banking client acquisition: prospect screening by region, industry chain, park and cluster, business-opportunity scanning, and full client portraits combining registry, relationships, opportunity signals and risk",
-      "description_i18n": {
-        "en": "Corporate-banking client acquisition: prospect screening by region, industry chain, park and cluster, business-opportunity scanning, and full client portraits combining registry, relationships, opportunity signals and risk",
-        "zh-CN": "【一级市场与银行】对公营销:按区域/产业链/园区筛选目标客户、园区与集群扫描、商机线索、客户全景画像"
-      },
-      "version": "0.1.2",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/corporate-client-acquisition/icon.png",
-      "category": "finance",
-      "keywords": [
-        "corporate-banking",
-        "prospecting",
-        "client-acquisition",
-        "industry-chain",
-        "kyc"
-      ],
-      "source": "./plugins/find-clients"
-    },
-    {
-      "name": "model-deals",
-      "displayName": "交易测算",
-      "displayName_i18n": {
-        "en": "Deal Modeling",
-        "zh-CN": "交易测算"
-      },
-      "requiresPaidPlan": true,
-      "description": "Transaction structuring and modeling: accretion/dilution analysis, sources and uses with pro-forma capital structure, precedent-transaction comps, and capital-raise dilution modeling for M&A, IPO, placements, and rights issues",
-      "description_i18n": {
-        "en": "Transaction structuring and modeling: accretion/dilution analysis, sources and uses with pro-forma capital structure, precedent-transaction comps, and capital-raise dilution modeling for M&A, IPO, placements, and rights issues",
-        "zh-CN": "【一级市场与银行】交易测算:并购增厚/摊薄、资金来源与用途及形式资本结构、可比交易、募投与摊薄"
-      },
-      "version": "0.1.1",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/trade-calculator/icon.png",
-      "category": "finance",
-      "keywords": [
-        "m-and-a",
-        "deal-modeling",
-        "accretion-dilution",
-        "ipo",
-        "capital-structure"
-      ],
-      "source": "./plugins/model-deals"
-    },
-    {
-      "name": "pick-funds",
-      "displayName": "基金研究",
-      "displayName_i18n": {
-        "en": "Fund Research",
-        "zh-CN": "基金研究"
-      },
-      "requiresPaidPlan": true,
-      "description": "Fund and fund-manager research: multi-criteria fund screening, fund and manager profiles, holdings and style analysis, and shortlist comparisons for funds, ETFs, and LOFs",
-      "description_i18n": {
-        "en": "Fund and fund-manager research: multi-criteria fund screening, fund and manager profiles, holdings and style analysis, and shortlist comparisons for funds, ETFs, and LOFs",
-        "zh-CN": "【二级市场】基金选品:多条件筛选、基金与经理画像、持仓风格与重合度分析"
-      },
-      "version": "0.1.1",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/fund-research/icon.png",
-      "category": "finance",
-      "keywords": [
-        "funds",
-        "etf",
-        "fund-screening",
-        "manager-research",
-        "holdings-analysis"
-      ],
-      "source": "./plugins/pick-funds"
-    },
-    {
-      "name": "read-macro",
-      "displayName": "宏观策略",
-      "displayName_i18n": {
-        "en": "Macro & Strategy",
-        "zh-CN": "宏观策略"
-      },
-      "requiresPaidPlan": true,
-      "description": "Top-down macro and strategy work: macro dashboards across growth/inflation/liquidity/credit, index valuation percentiles and earnings attribution, cross-asset allocation views, and policy and industrial-plan tracking",
-      "description_i18n": {
-        "en": "Top-down macro and strategy work: macro dashboards across growth/inflation/liquidity/credit, index valuation percentiles and earnings attribution, cross-asset allocation views, and policy and industrial-plan tracking",
-        "zh-CN": "【二级市场】自上而下:宏观仪表盘、指数估值分位与盈利归因、大类资产配置观点、政策与产业规划跟踪"
-      },
-      "version": "0.1.1",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/macro-strategy/icon.png",
-      "category": "finance",
-      "keywords": [
-        "macro",
-        "strategy",
-        "asset-allocation",
-        "index-valuation",
-        "policy-tracking"
-      ],
-      "source": "./plugins/read-macro"
-    },
-    {
-      "name": "run-fpa",
-      "displayName": "经营分析",
-      "displayName_i18n": {
-        "en": "Corporate FP&A",
-        "zh-CN": "经营分析"
-      },
-      "requiresPaidPlan": true,
-      "description": "Corporate finance and FP&A: management reporting off a closed ledger, rolling cash-flow forecasts, budget-versus-actual variance analysis, scenario and break-even analysis, and peer benchmarking against listed comparables",
-      "description_i18n": {
-        "en": "Corporate finance and FP&A: management reporting off a closed ledger, rolling cash-flow forecasts, budget-versus-actual variance analysis, scenario and break-even analysis, and peer benchmarking against listed comparables",
-        "zh-CN": "【企业财务】财务部与FP&A:管理报表、13周滚动现金流预测、预算差异分析、情景与盈亏平衡、投入决策测算、上市同业对标"
-      },
-      "version": "0.1.1",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/business-analysis/icon.png",
-      "category": "finance",
-      "keywords": [
-        "fpa",
-        "corporate-finance",
-        "budgeting",
-        "cash-forecast",
-        "management-reporting"
-      ],
-      "source": "./plugins/run-fpa"
-    },
-    {
-      "name": "vet-companies",
-      "displayName": "企业尽调",
-      "displayName_i18n": {
-        "en": "Company Due Diligence",
-        "zh-CN": "企业尽调"
-      },
-      "requiresPaidPlan": true,
-      "description": "Counterparty and company due diligence: structured DD reports, related-party and supply-chain mapping, and risk scans (litigation, dishonesty records, pledges, penalties) for Chinese enterprises",
-      "description_i18n": {
-        "en": "Counterparty and company due diligence: structured DD reports, related-party and supply-chain mapping, and risk scans (litigation, dishonesty records, pledges, penalties) for Chinese enterprises",
-        "zh-CN": "【一级市场与银行】企业排查:尽调报告、关联方与供应链图谱、失信涉诉质押风险快扫"
-      },
-      "version": "0.1.2",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/corporate-due-diligence/icon.png",
-      "category": "finance",
-      "keywords": [
-        "due-diligence",
-        "kyc",
-        "risk-screening",
-        "related-parties",
-        "counterparty"
-      ],
-      "source": "./plugins/vet-companies"
-    },
-    {
-      "name": "watch-positions",
-      "displayName": "持仓跟踪",
-      "displayName_i18n": {
-        "en": "Position Monitoring",
-        "zh-CN": "持仓跟踪"
-      },
-      "requiresPaidPlan": true,
-      "description": "Watchlist and portfolio monitoring: after-close recaps, position event alerts (announcements, pledges, lockup expiries), and intraday move attribution for A/H/US names",
-      "description_i18n": {
-        "en": "Watchlist and portfolio monitoring: after-close recaps, position event alerts (announcements, pledges, lockup expiries), and intraday move attribution for A/H/US names",
-        "zh-CN": "【二级市场】持仓跟踪:自选股清单、带异动归因的盘后复盘、持仓事件分级提醒"
-      },
-      "version": "0.1.1",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/portfolio-tracking/icon.png",
-      "category": "finance",
-      "keywords": [
-        "portfolio-monitoring",
-        "watchlist",
-        "market-recap",
-        "event-alerts",
-        "attribution"
-      ],
-      "source": "./plugins/watch-positions"
-    },
-    {
-      "name": "write-research",
-      "displayName": "权益研究",
-      "displayName_i18n": {
-        "en": "Equity Research",
-        "zh-CN": "权益研究"
-      },
-      "requiresPaidPlan": true,
-      "description": "End-to-end investment research reports, sector analysis, earnings updates, and valuation models",
-      "description_i18n": {
-        "en": "End-to-end investment research reports, sector analysis, earnings updates, and valuation models",
-        "zh-CN": "【二级市场】研究产出:深度研报、行业分析、财报点评、DCF/LBO/三表估值模型"
-      },
-      "version": "0.1.1",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/equity-research/icon.png",
-      "category": "finance",
-      "keywords": [
-        "equity-research",
-        "valuation",
-        "dcf",
-        "lbo",
-        "earnings"
-      ],
-      "source": "./plugins/write-research"
-    },
-    {
       "name": "gitlab",
-      "description": "GitLab CLI workflows based on GitLab's official Agent Skills for merge requests, issues, CI/CD, repositories, releases, and API operations.",
+      "description": "基于官方 GitLab CLI 的 Merge Request、Issue、CI/CD、仓库、Release 与 API 工作流。",
       "description_i18n": {
         "en": "GitLab CLI workflows based on GitLab's official Agent Skills for merge requests, issues, CI/CD, repositories, releases, and API operations.",
         "zh-CN": "基于官方 GitLab CLI 的 Merge Request、Issue、CI/CD、仓库、Release 与 API 工作流。"
       },
       "version": "0.1.3",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/gitlab/icon.png",
       "category": "developer-tools",
       "keywords": [
         "gitlab",
@@ -448,21 +88,14 @@
     },
     {
       "name": "alibaba-cloud-cli",
-      "displayName": "Alibaba Cloud CLI",
-      "displayName_i18n": {
-        "en": "Alibaba Cloud CLI",
-        "zh-CN": "阿里云 CLI"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/alibaba-cloud-cli/icon.png",
-      "description": "Alibaba Cloud CLI workflows for credential setup, profile checks, and safe cloud resource operations.",
+      "description": "阿里云 CLI 工作流：配置凭证与 profile，并安全执行云资源查询和操作。",
       "description_i18n": {
         "en": "Alibaba Cloud CLI workflows for credential setup, profile checks, and safe cloud resource operations.",
         "zh-CN": "阿里云 CLI 工作流：配置凭证与 profile，并安全执行云资源查询和操作。"
       },
       "version": "0.1.2",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
       "category": "developer-tools",
       "keywords": [
@@ -478,21 +111,14 @@
     },
     {
       "name": "lark-cli",
-      "displayName": "Lark CLI",
-      "displayName_i18n": {
-        "en": "Lark CLI",
-        "zh-CN": "飞书 CLI"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/lark-cli/icon.png",
-      "description": "Lark CLI workflows for docs, sheets, Base, calendar, messaging, and other SaaS resources with guided setup and OAuth login.",
+      "description": "Lark CLI 工作流：覆盖文档、表格、多维表格、日历、消息等 SaaS 资源，并引导应用配置与 OAuth 登录。",
       "description_i18n": {
         "en": "Lark CLI workflows for docs, sheets, Base, calendar, messaging, and other SaaS resources with guided setup and OAuth login.",
         "zh-CN": "Lark CLI 工作流：覆盖文档、表格、多维表格、日历、消息等 SaaS 资源，并引导应用配置与 OAuth 登录。"
       },
       "version": "0.1.2",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
       "category": "productivity",
       "keywords": [
@@ -509,21 +135,14 @@
     },
     {
       "name": "tencent-meeting-cli",
-      "displayName": "Tencent Meeting CLI",
-      "displayName_i18n": {
-        "en": "Tencent Meeting CLI",
-        "zh-CN": "腾讯会议 CLI"
-      },
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/tencent-meeting-cli/icon.png",
-      "description": "Tencent Meeting CLI workflows with OAuth2 setup, meeting management, recordings, and attendee reports.",
+      "description": "腾讯会议 CLI 工作流：OAuth2 授权、会议管理、录制管理和参会报告查询。",
       "description_i18n": {
         "en": "Tencent Meeting CLI workflows with OAuth2 setup, meeting management, recordings, and attendee reports.",
         "zh-CN": "腾讯会议 CLI 工作流：OAuth2 授权、会议管理、录制管理和参会报告查询。"
       },
       "version": "0.1.3",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
       "category": "productivity",
       "keywords": [
@@ -537,20 +156,14 @@
     },
     {
       "name": "dingtalk-cli",
-      "displayName": "DingTalk CLI",
-      "displayName_i18n": {
-        "en": "DingTalk CLI",
-        "zh-CN": "钉钉 CLI"
-      },
-      "description": "DingTalk Workspace CLI workflows with OAuth/device authorization, profile checks, and optional upstream Skills.",
+      "description": "钉钉 Workspace CLI 工作流：OAuth/设备授权、验证组织账号，并按需安装上游 Skills。",
       "description_i18n": {
         "en": "DingTalk Workspace CLI workflows with OAuth/device authorization, profile checks, and optional upstream Skills.",
         "zh-CN": "钉钉 Workspace CLI 工作流：OAuth/设备授权、验证组织账号，并按需安装上游 Skills。"
       },
       "version": "0.1.1",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
       "homepage": "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli",
       "repository": "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli",
@@ -565,25 +178,18 @@
         "tasks"
       ],
       "category": "productivity",
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/dingtalk-cli/icon.png",
       "source": "./plugins/dingtalk-cli"
     },
     {
       "name": "wecom-cli",
-      "displayName": "WeCom CLI",
-      "displayName_i18n": {
-        "en": "WeCom CLI",
-        "zh-CN": "企业微信 CLI"
-      },
-      "description": "WeCom CLI workflows for messages, docs, sheets, mail, calendar, meetings, contacts, and todos with QR authentication.",
+      "description": "企业微信 CLI 工作流：覆盖消息、文档、表格、邮件、日历、会议、通讯录和待办，并支持扫码授权与状态检查。",
       "description_i18n": {
         "en": "WeCom CLI workflows for messages, docs, sheets, mail, calendar, meetings, contacts, and todos with QR authentication.",
         "zh-CN": "企业微信 CLI 工作流：覆盖消息、文档、表格、邮件、日历、会议、通讯录和待办，并支持扫码授权与状态检查。"
       },
       "version": "0.1.1",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
       "homepage": "https://github.com/WecomTeam/wecom-cli",
       "repository": "https://github.com/WecomTeam/wecom-cli",
@@ -599,133 +205,18 @@
         "todo"
       ],
       "category": "productivity",
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/wecom-cli/icon.png",
       "source": "./plugins/wecom-cli"
     },
     {
-      "name": "hexin",
-      "description": "MCP services for RoyalFlush iFinD stock, global stock, index, fund, and bond data.",
-      "description_i18n": {
-        "en": "MCP services for RoyalFlush iFinD stock, global stock, index, fund, and bond data.",
-        "zh-CN": "同花顺股票、海外股票、指数、基金与债券数据 MCP 服务。"
-      },
-      "version": "0.1.0",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "keywords": [
-        "hexin",
-        "finance",
-        "mcp"
-      ],
-      "displayName": "同花顺",
-      "displayName_i18n": {
-        "en": "RoyalFlush iFinD",
-        "zh-CN": "同花顺"
-      },
-      "requiresPaidPlan": true,
-      "category": "finance",
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/hexin/icon.png",
-      "source": "./plugins/hexin"
-    },
-    {
-      "name": "wind",
-      "description": "MCP services for Wind stock, global stock, index, fund, bond, economic, and document data.",
-      "description_i18n": {
-        "en": "MCP services for Wind stock, global stock, index, fund, bond, economic, and document data.",
-        "zh-CN": "万得股票、海外股票、指数、基金、债券、宏观经济与公告研报数据 MCP 服务。"
-      },
-      "version": "0.1.0",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "keywords": [
-        "wind",
-        "finance",
-        "mcp"
-      ],
-      "displayName": "Wind 万得",
-      "displayName_i18n": {
-        "en": "Wind",
-        "zh-CN": "Wind 万得"
-      },
-      "requiresPaidPlan": true,
-      "category": "finance",
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/wind/icon.png",
-      "source": "./plugins/wind"
-    },
-    {
-      "name": "tianyancha",
-      "description": "MCP service for Tianyancha company information queries.",
-      "description_i18n": {
-        "en": "MCP service for Tianyancha company information queries.",
-        "zh-CN": "天眼查企业信息查询 MCP 服务。"
-      },
-      "version": "0.1.0",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "keywords": [
-        "tianyancha",
-        "finance",
-        "mcp"
-      ],
-      "displayName": "天眼查",
-      "displayName_i18n": {
-        "en": "Tianyancha",
-        "zh-CN": "天眼查"
-      },
-      "requiresPaidPlan": true,
-      "category": "finance",
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/tianyancha/icon.png",
-      "source": "./plugins/tianyancha"
-    },
-    {
-      "name": "finance-search",
-      "description": "MCP services for SEC EDGAR filing search and financial web and news search.",
-      "description_i18n": {
-        "en": "MCP services for SEC EDGAR filing search and financial web and news search.",
-        "zh-CN": "SEC EDGAR 文件检索与财经网页、新闻搜索 MCP 服务。"
-      },
-      "version": "0.1.0",
-      "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
-      },
-      "keywords": [
-        "finance-search",
-        "finance",
-        "mcp"
-      ],
-      "displayName": "金融聚合搜索",
-      "displayName_i18n": {
-        "en": "Financial Aggregated Search",
-        "zh-CN": "金融聚合搜索"
-      },
-      "requiresPaidPlan": true,
-      "category": "finance",
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/finance-search/icon.png",
-      "source": "./plugins/finance-search"
-    },
-    {
       "name": "obsidian",
-      "displayName": "Obsidian",
-      "displayName_i18n": {
-        "en": "Obsidian",
-        "zh-CN": "Obsidian"
-      },
-      "description": "Obsidian authoring skills from kepano/obsidian-skills: Obsidian Flavored Markdown notes, Bases database views, JSON Canvas boards, vault automation via Obsidian CLI, clean web extraction with Defuddle, and Knap template rendering — plus visualization skills from axtonliu/axton-obsidian-visual-skills: Mermaid and Excalidraw diagram generation and text-to-canvas layout. A setup skill verifies and installs the Obsidian CLI, defuddle, and knap.",
+      "description": "来自 kepano/obsidian-skills 的 Obsidian 创作技能：Obsidian 风格 Markdown 笔记、Bases 数据库视图、JSON Canvas 白板、Obsidian CLI 库操作、Defuddle 网页正文提取、Knap 模板批量生成笔记；并集成 axtonliu/axton-obsidian-visual-skills 的可视化技能：Mermaid/Excalidraw 图表生成与文本转画布布局。附 setup 技能，检测并安装 Obsidian CLI、defuddle 与 knap。",
       "description_i18n": {
         "en": "Obsidian authoring skills from kepano/obsidian-skills: Obsidian Flavored Markdown notes, Bases database views, JSON Canvas boards, vault automation via Obsidian CLI, clean web extraction with Defuddle, and Knap template rendering — plus visualization skills from axtonliu/axton-obsidian-visual-skills: Mermaid and Excalidraw diagram generation and text-to-canvas layout. A setup skill verifies and installs the Obsidian CLI, defuddle, and knap.",
         "zh-CN": "来自 kepano/obsidian-skills 的 Obsidian 创作技能：Obsidian 风格 Markdown 笔记、Bases 数据库视图、JSON Canvas 白板、Obsidian CLI 库操作、Defuddle 网页正文提取、Knap 模板批量生成笔记；并集成 axtonliu/axton-obsidian-visual-skills 的可视化技能：Mermaid/Excalidraw 图表生成与文本转画布布局。附 setup 技能，检测并安装 Obsidian CLI、defuddle 与 knap。"
       },
       "version": "0.1.2",
       "author": {
-        "name": "Z.ai",
-        "url": "https://z.ai"
+        "name": "ucode"
       },
       "category": "productivity",
       "keywords": [
@@ -740,7 +231,6 @@
         "excalidraw",
         "visualization"
       ],
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/obsidian/icon.png",
       "source": "./plugins/obsidian"
     },
     {
@@ -750,7 +240,7 @@
         "en": "Hyper3D Rodin",
         "zh-CN": "Hyper3D Rodin"
       },
-      "description": "Generate 3D models from text or reference images with Hyper3D Rodin Gen-2.5, split completed models with BANG, and retrieve results.",
+      "description": "通过文字或参考图片生成 Hyper3D Rodin Gen-2.5 三维模型，使用 BANG 拆分已完成模型，并获取生成结果。",
       "description_i18n": {
         "en": "Generate 3D models from text or reference images with Hyper3D Rodin Gen-2.5, split completed models with BANG, and retrieve results.",
         "zh-CN": "通过文字或参考图片生成 Hyper3D Rodin Gen-2.5 三维模型，使用 BANG 拆分已完成模型，并获取生成结果。"
@@ -772,123 +262,40 @@
         "mcp"
       ],
       "category": "developer-tools",
-      "icon": "https://cdn-zcode.z.ai/zcode/official-plugin/assets/hyper3d-rodin/icon.jpg",
       "source": "./plugins/hyper3d-rodin"
     },
     {
-      "name": "zcode-mcp-app-dev",
-      "version": "0.1.1",
-      "description": "Develop MCP Apps for ZCode with official SDKs and a small host-extension reference.",
-      "description_i18n": {
-        "en": "Develop MCP Apps for ZCode with official SDKs and a small host-extension reference.",
-        "zh-CN": "使用官方 SDK 开发 ZCode MCP App，附宿主扩展约定与独立构建指引。"
-      },
-      "author": {
-        "name": "ZCode"
-      },
-      "category": "developer-tools",
-      "source": "./plugins/zcode-mcp-app-dev"
-    },
-    {
       "name": "blender",
-      "displayName": "Blender",
-      "displayName_i18n": {
-        "en": "Blender",
-        "zh-CN": "Blender"
-      },
       "version": "0.2.2",
-      "description": "在 ZCode 对话旁打开 Blender 场景：Agent 修改物体、材质、相机并渲染预览；面板用 Three.js 轻量浏览。",
+      "description": "让 Agent 在对话中创建、检视、修改并渲染 Blender 场景（.blend）。",
       "description_i18n": {
-        "en": "Edit Blender scenes with an interactive 3D panel and MCP tools.",
-        "zh-CN": "在 ZCode 对话旁打开 Blender 场景：Agent 修改物体、材质、相机并渲染预览；面板用 Three.js 轻量浏览。"
+        "en": "Let the agent create, inspect, edit and render Blender scenes (.blend) via MCP tools.",
+        "zh-CN": "让 Agent 在对话中创建、检视、修改并渲染 Blender 场景（.blend）。"
       },
       "category": "productivity",
       "author": {
-        "name": "ZCode"
+        "name": "ucode"
       },
       "source": "./plugins/blender"
     },
     {
-      "name": "excalidraw",
-      "displayName": "Excalidraw",
-      "displayName_i18n": {
-        "en": "Excalidraw",
-        "zh-CN": "Excalidraw"
-      },
-      "version": "0.2.2",
-      "description": "让 Agent 生成图形，在对话侧栏用 Excalidraw 编辑、引用选区、继续修改并导出。",
-      "description_i18n": {
-        "en": "Create and edit diagrams with Excalidraw and MCP tools.",
-        "zh-CN": "让 Agent 生成图形，在对话侧栏用 Excalidraw 编辑、引用选区、继续修改并导出。"
-      },
-      "category": "productivity",
-      "author": {
-        "name": "ZCode"
-      },
-      "source": {
-        "source": "url",
-        "url": "https://cdn-zcode.z.ai/zcode/official-plugin/plugins/excalidraw/0.2.2/plugin.zip"
-      }
-    },
-    {
-      "name": "openpencil",
-      "displayName": "OpenPencil",
-      "displayName_i18n": {
-        "en": "OpenPencil",
-        "zh-CN": "OpenPencil"
-      },
-      "version": "0.2.3",
-      "description": "在对话侧栏用 OpenPencil 编辑工作区里的 Figma .fig 设计稿，Agent 通过设计工具协同修改、引用选区并生成代码。",
-      "description_i18n": {
-        "en": "Edit design files with OpenPencil and MCP tools.",
-        "zh-CN": "在对话侧栏用 OpenPencil 编辑工作区里的 Figma .fig 设计稿，Agent 通过设计工具协同修改、引用选区并生成代码。"
-      },
-      "category": "productivity",
-      "author": {
-        "name": "ZCode"
-      },
-      "source": {
-        "source": "url",
-        "url": "https://cdn-zcode.z.ai/zcode/official-plugin/plugins/openpencil/0.2.3/plugin.zip"
-      }
-    },
-    {
       "name": "showcase",
-      "displayName": "Showcase",
+      "displayName": "能力演示",
       "displayName_i18n": {
-        "en": "Showcase",
-        "zh-CN": "Showcase"
+        "en": "Capability Demo",
+        "zh-CN": "能力演示"
       },
-      "version": "0.4.3",
-      "description": "完整能力演示目录 SC01–SC53：基础插件 UI、App 内模型问答、取消、保活、浏览器存储、失败与隔离边界。",
+      "version": "1.0.0",
+      "description": "ucode 插件能力演示：一个插件里同时包含 skill、命令、子角色、hook、MCP 服务与用户配置，可作为开发参考。",
       "description_i18n": {
-        "en": "Explore MCP Apps capabilities, interactions, and lifecycle examples.",
-        "zh-CN": "完整能力演示目录 SC01–SC53：基础插件 UI、App 内模型问答、取消、保活、浏览器存储、失败与隔离边界。"
+        "en": "ucode plugin capability demo: skill, commands, sub-agent, hook, MCP server and user config in one plugin, as a development reference.",
+        "zh-CN": "ucode 插件能力演示：一个插件里同时包含 skill、命令、子角色、hook、MCP 服务与用户配置，可作为开发参考。"
       },
       "category": "developer-tools",
       "author": {
-        "name": "ZCode"
+        "name": "ucode"
       },
       "source": "./plugins/showcase"
-    },
-    {
-      "name": "disk-cleaner",
-      "displayName": "Disk Cleaner",
-      "displayName_i18n": {
-        "en": "Disk Cleaner",
-        "zh-CN": "磁盘清理器"
-      },
-      "version": "0.1.2",
-      "description": "只读扫描目录占用与大文件，在侧栏逐项确认后移入系统回收站。",
-      "description_i18n": {
-        "en": "Analyze disk usage and large files, then review selected files before moving them to the system trash.",
-        "zh-CN": "只读扫描目录占用与大文件，在侧栏逐项确认后移入系统回收站。"
-      },
-      "author": {
-        "name": "ZCode"
-      },
-      "category": "utilities",
-      "source": "./plugins/disk-cleaner"
     }
   ]
 }

@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const MANIFEST_DIRS = [".ucode-plugin", ".zcode-plugin", ".claude-plugin"];
+const MANIFEST_DIRS = [".ucode-plugin"];
 const errors = [];
 
 const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));

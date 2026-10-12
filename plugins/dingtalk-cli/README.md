@@ -1,37 +1,37 @@
-# DingTalk Workspace CLI Plugin
+# 钉钉 Workspace CLI 插件
 
-[中文文档](./README_CN.md)
+[English](./README.md)
 
-This plugin is a lightweight Skill wrapper around the official [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli) (`dws`). It guides CLI installation and optional upstream Skills, uses local OAuth/device-flow authentication, and does not bundle a binary, MCP server, or credentials.
+本插件是官方 [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli)（命令 `dws`）的轻量 Skill 封装：支持 CLI 和可选上游 Skills 安装，使用本机 OAuth/设备流认证，不内置二进制、MCP 或凭证。
 
-Wrapper maintained by Z.ai, version 0.1.1; this is not a vendor-published plugin. Upstream CLI software, documentation, and trademarks remain attributed to their respective owners.
+封装由 Z.ai 维护，版本 0.1.1；这不是上游厂商发布的插件。上游 CLI、文档和商标仍归对应厂商所有。
 
-## Quick setup
+## 快速 setup
 
-Run `/dingtalk-cli:setup`. Install the latest `dws` if needed, reuse an authenticated profile or log in with `dws auth login` (`--device` headlessly), then verify `dws auth status --format json` and `dws profile list --format json`.
+运行 `/dingtalk-cli:setup`。按需安装最新版 `dws`，复用已认证的 profile，或使用 `dws auth login`（无头环境 `--device`）登录，再以 `dws auth status --format json` 和 `dws profile list --format json` 验证。
 
-On macOS/Linux, prefer the official shell installer with `DWS_NO_SKILLS=1`. The npm installer and CLI upgrades may install or restore global upstream Skills; disclose this before installation. Check `authenticated: true`, not just exit code 0 or `success: true`.
+macOS/Linux 默认使用官方 shell 安装器的 `DWS_NO_SKILLS=1` 模式。npm 安装器及 CLI 升级可能安装或恢复全局上游 Skills，安装前需说明。必须检查 `authenticated: true`，不能仅凭退出码 0 或 `success: true` 判断已登录。
 
-The wrapper's two Skills work without upstream Skills. If separately requested, inspect `dws skill setup --help` and choose the actual host (including ZCode), mode, and destination before confirming installation. Administrators may need to enable CLI access or approve app permissions.
+本封装的两个 Skill 不依赖上游 Skills。仅用户单独要求时查看 `dws skill setup --help`，选择实际宿主（含 ucode）、模式和目录后确认安装。企业管理员可能需要开启 CLI 访问或批准应用权限。
 
 ## Skills
 
-| Skill | Entry | Purpose |
+| Skill | 入口 | 用途 |
 | --- | --- | --- |
-| `setup` | `/dingtalk-cli:setup` | Check/install the latest `dws`, authenticate; upstream Skills are optional |
-| `cli` | Context-triggered | Use CLI capabilities for messages, docs, tables, calendar, and tasks |
+| `setup` | `/dingtalk-cli:setup` | 检查/安装最新版 `dws`、完成认证，上游 Skills 可选 |
+| `cli` | 自动按上下文触发 | 使用消息、文档、表格、日历、待办等 CLI 能力 |
 
-## Safety boundary
+## 安全边界
 
-- Install scripts, Skill-directory writes, CLI upgrades, and remote writes require explicit user participation or confirmation.
-- Select multiple organizations/accounts by stable `corpId:userId` selectors; never guess from duplicate names.
-- Never request or echo OAuth tokens, App Secrets, or PATs; summarize organization, account, resource, and recipients before writes.
+- 安装脚本、Skill 目录写入、CLI 升级和远端写操作都需要用户明确参与或确认。
+- 多组织/多账号必须按稳定的 `corpId:userId` 选择，不能按同名组织猜选。
+- 不要求用户在聊天中粘贴 OAuth Token、App Secret 或 PAT；写操作会先展示组织、账号、资源和接收人。
 
-Custom-app secrets use the local credential store or a securely supplied complete environment pair, never command-line arguments, shell history, or chat.
+自建应用 Secret 使用本地凭证库或安全注入的完整环境变量对，不放入命令参数、shell 历史或聊天。
 
-## Upstream documentation
+## 上游文档
 
 - [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli)
-- [Installation and Skill setup](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli#installation)
+- [安装与 Skill setup](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli#installation)
 
-Open a new ZCode session after enabling or updating the plugin so the Skill catalog is refreshed.
+启用或更新插件后请新建 ucode session，确保 Skill 清单刷新。

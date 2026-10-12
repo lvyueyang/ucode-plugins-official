@@ -1,58 +1,58 @@
-# Obsidian for ZCode
+# ucode 的 Obsidian 插件
 
-[中文文档](./README_CN.md)
+[English](./README.md)
 
-This ZCode plugin packages the six agent skills from [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) plus visualization skills from [axtonliu/axton-obsidian-visual-skills](https://github.com/axtonliu/axton-obsidian-visual-skills) — Mermaid and Excalidraw diagram generation, and text-to-canvas layout algorithms folded into `json-canvas` — together with a local `setup` skill, so they can be installed through the ZCode plugin marketplace. The skills teach the agent Obsidian's file formats and companion CLIs — no MCP servers or hooks are bundled.
+本插件将 [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) 的六个 agent 技能与 [axtonliu/axton-obsidian-visual-skills](https://github.com/axtonliu/axton-obsidian-visual-skills) 的可视化技能(Mermaid/Excalidraw 图表生成,以及并入 `json-canvas` 的文本转画布布局算法)打包为 ucode 插件,并附带一个本地 `setup` 技能,可通过 ucode 插件市场安装。这些技能教 agent 使用 Obsidian 的文件格式与配套 CLI——插件本身不包含 MCP 服务或 hooks。
 
-## Prerequisites
+## 前置条件
 
-Skills in this plugin rely on external CLIs and verify them at runtime:
+插件中的技能依赖外部 CLI，运行时会自行检查：
 
-- [Obsidian CLI](https://help.obsidian.md/cli) (`obsidian`) — required by the `obsidian-cli` skill, and a running Obsidian instance
-- [Defuddle](https://github.com/kepano/defuddle) (`npm install -g defuddle`) — required by the `defuddle` skill
-- [Knap](https://github.com/obsidianmd/knap) (`npm install -g knap`, Node.js 20+) — required by the `knap` skill
+- [Obsidian CLI](https://help.obsidian.md/cli)（`obsidian`）——`obsidian-cli` 技能需要，且要求 Obsidian 正在运行
+- [Defuddle](https://github.com/kepano/defuddle)（`npm install -g defuddle`）——`defuddle` 技能需要
+- [Knap](https://github.com/obsidianmd/knap)（`npm install -g knap`，需 Node.js 20+）——`knap` 技能需要
 
-- [Excalidraw plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin) (community plugin, install from inside Obsidian) — required by the `excalidraw-diagram` skill for its Obsidian `.md` output mode; the standard `.excalidraw` output opens on excalidraw.com without it
+- [Excalidraw 插件](https://github.com/zsviczian/obsidian-excalidraw-plugin)（社区插件，在 Obsidian 内安装）——`excalidraw-diagram` 技能的 Obsidian `.md` 输出模式需要；标准 `.excalidraw` 输出可直接在 excalidraw.com 打开，无此依赖
 
-The other skills (`obsidian-markdown`, `obsidian-bases`, `json-canvas`, `mermaid-visualizer`) only read and write files in your vault and have no dependencies.
+其余技能（`obsidian-markdown`、`obsidian-bases`、`json-canvas`、`mermaid-visualizer`）只读写 vault 中的文件，无任何依赖。
 
-Run `/obsidian:setup` to verify these tools on a new machine and get guided installation (`/obsidian:setup obsidian` checks a single component).
+在新机器上运行 `/obsidian:setup` 可检测这些工具并引导安装（`/obsidian:setup obsidian` 只检查单个组件）。
 
-Before installation or environment changes — during setup, or when the `defuddle` and `knap` skills find a tool missing — the plugin shows the proposed actions and asks for confirmation via Ask User (or in the conversation if the tool is unavailable). You can choose manual installation or skip; read-only checks do not require confirmation.
+安装或修改环境前——无论是 setup 流程，还是 `defuddle`、`knap` 技能发现工具缺失时——插件都会展示具体操作，并通过 Ask User 请求确认（工具不可用时在对话中询问并等待答复）。你可以选择手动安装或跳过；只读检测无需确认。
 
-## Skills
+## 技能列表
 
-| Skill | Description |
-|-------|-------------|
-| setup | Verify and install the plugin's CLI dependencies: official Obsidian CLI registration, defuddle, and knap |
-| obsidian-markdown | Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, and properties |
-| obsidian-bases | Create and edit `.base` files with views, filters, formulas, and summaries |
-| json-canvas | Create and edit `.canvas` whiteboard files with nodes, edges, and groups; generate MindMap or freeform canvases from text content |
-| mermaid-visualizer | Turn text into professional Mermaid diagrams (flows, mindmaps, sequence, state) with built-in syntax-error prevention |
-| excalidraw-diagram | Generate hand-drawn style Excalidraw diagrams in three modes: Obsidian `.md`, standard `.excalidraw`, and animated |
-| obsidian-cli | Read, create, search, and manage notes in a running Obsidian vault; plugin/theme development support |
-| defuddle | Extract clean markdown from web pages, stripping navigation and ads to save tokens |
-| knap | Render markdown notes from templates and JSON/CSV data, including batch generation |
+| 技能 | 说明 |
+|------|------|
+| setup | 检测并安装插件的 CLI 依赖：Obsidian CLI 官方注册流程、defuddle、knap |
+| obsidian-markdown | 创建和编辑 Obsidian 风格 Markdown：双链、嵌入、callout、属性 |
+| obsidian-bases | 创建和编辑 `.base` 文件：视图、筛选、公式、汇总 |
+| json-canvas | 创建和编辑 `.canvas` 白板文件：节点、连线、分组；支持从文本内容生成 MindMap/自由布局画布 |
+| mermaid-visualizer | 把文本转为专业 Mermaid 图（流程、思维导图、时序、状态），内置语法防错规则 |
+| excalidraw-diagram | 生成手绘风格 Excalidraw 图，三种模式：Obsidian `.md`、标准 `.excalidraw`、动画 |
+| obsidian-cli | 读写、搜索、管理运行中 Obsidian 库的笔记；支持插件/主题开发调试 |
+| defuddle | 从网页提取干净正文为 Markdown，去掉导航广告等杂质以节省 token |
+| knap | 用模板和 JSON/CSV 数据渲染 Markdown 笔记，支持批量生成 |
 
-Skills are invoked automatically when relevant (e.g. editing a `.base` file or saving a web article into your vault). You can also trigger them explicitly, for example `/obsidian:obsidian-markdown` or `/obsidian:knap`.
+技能会在相关场景自动触发（例如编辑 `.base` 文件、把网页文章存入 vault），也可以显式调用，例如 `/obsidian:obsidian-markdown`、`/obsidian:knap`。
 
-## Examples
+## 使用示例
 
 ```text
-# Turn a web article into a clean note in the vault
-Read https://example.com/article and save it as a note in my vault
+# 把一篇网页文章提取成干净笔记存入 vault
+读取 https://example.com/article 并保存为我 vault 里的笔记
 
-# Build a literature database over the vault
-Create a .base file showing all notes tagged #book, grouped by status, with rating shown as a card view
+# 给 vault 建一个文献数据库
+创建一个 .base 文件，展示所有带 #book 标签的笔记，按 status 分组，用卡片视图显示评分
 
-# Batch-generate notes from structured data
-Use knap to render one note per row of books.csv using my book template
+# 用结构化数据批量生成笔记
+用 knap 按 books.csv 的每一行数据、套用我的图书模板批量生成笔记
 
-# Visualize content as diagrams
-Turn this article into an Excalidraw mind map
-Create a Mermaid flowchart of the CI/CD pipeline and save it into my vault
+# 把内容可视化成图
+把这篇文章整理成 Excalidraw 思维导图
+画一个 CI/CD 流水线的 Mermaid 流程图，存到我的 vault 里
 ```
 
-## Attribution
+## 署名
 
-The six core skills are authored by [Steph Ango](https://github.com/kepano); the `mermaid-visualizer` and `excalidraw-diagram` skills, plus the layout algorithms folded into `json-canvas`, are by [Axton Liu](https://github.com/axtonliu). Both sets are imported from their upstream repositories — see [UPSTREAM.md](./UPSTREAM.md) for the imported commits, licenses, and adaptation deltas. This adaptation adds the ZCode plugin manifests, marketplace registration, this documentation, and a local `setup` skill; all other skills are upstream-derived.
+六个核心技能作者为 [Steph Ango](https://github.com/kepano)；`mermaid-visualizer`、`excalidraw-diagram` 两个技能以及并入 `json-canvas` 的布局算法来自 [Axton Liu](https://github.com/axtonliu)。两组技能均从各自上游仓库导入——导入的 commit、许可证与适配差异见 [UPSTREAM.md](./UPSTREAM.md)。本次适配增加了 ucode 插件清单、市场注册、本文档与一个本地 `setup` 技能；其余技能内容均来自上游。
