@@ -1,0 +1,9 @@
+{
+  "name": "ucode-plugins-official",
+  "private": true,
+  "type": "module",
+  "description": "ucode 官方插件目录",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  }
+}
